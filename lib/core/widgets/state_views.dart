@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 
+/// A bare page (back button only) around one of the state views below, for
+/// screens that can't draw their real content yet.
+class StatePage extends StatelessWidget {
+  const StatePage({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) =>
+      Scaffold(appBar: AppBar(), body: child);
+}
+
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 
