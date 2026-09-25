@@ -39,7 +39,7 @@ flutter test
 - **Arabic-first RTL:** Arabic by default. Layout, paddings, arrows and the seek bar follow the reading direction. Times and speeds (`1.5x`, `03:14`) always read left to right.
 - **States:** loading, empty catalog, empty course, empty section, course or lesson not found, catalog error, and missing or corrupt video. Every error screen explains the problem and offers a retry where it makes sense.
 
-**Bonus:** every bonus item. Arabic/English switch, dark mode, course search, per-lesson notes (in the player under "Next lesson", saved as you type), remembered playback speed, and widget tests.
+**Bonus:** every bonus item. Arabic/English switch, dark mode, course search (Arabic spelling variants match, e.g. «اساسيات» finds «أساسيات»), per-lesson notes (in the player under "Next lesson", saved as you type), remembered playback speed, and widget tests.
 
 ## Architecture
 
@@ -115,6 +115,7 @@ With many courses, long notes or sync, I would switch to a real database (Drift/
 
 - **Fullscreen only through the button.** The app stays in portrait, and landscape is only unlocked while fullscreen is on. When landscape is allowed on a normal screen, the system briefly jumps to the last orientation it remembers before correcting, which makes screens flip on their own.
 - **Three clips shared by nine lessons.** This keeps the app small (the videos total under 21 MB); each lesson still stores its own progress.
+- **"Watched 90%" means reaching 90% of the video.** Seeking past 90% also completes the lesson. Scrub previews are never saved, though: only the position where the student lets go. Tracking the actual time watched would mean recording watched ranges, which felt too much for this scope.
 - **Durations.** The `durationSec` in the catalog is only used for display. Completion and resume use the real duration reported by the player.
 - **Progress depends on IDs.** Progress is stored by course and lesson ID, so renaming an ID in the catalog would lose the progress stored under the old ID.
 - **No `PlayerCubit` tests.** Testing it would need a fake video controller. The rules it relies on are covered by the domain tests.
