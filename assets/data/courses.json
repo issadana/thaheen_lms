@@ -1,0 +1,98 @@
+{
+  "courses": [
+    {
+      "id": "anatomy-101",
+      "title": { "ar": "مقدمة في التشريح", "en": "Introduction to Anatomy" },
+      "instructor": { "ar": "د. سارة", "en": "Dr. Sarah" },
+      "thumbnail": "assets/images/organs.jpg",
+      "sections": [
+        {
+          "id": "s1",
+          "title": { "ar": "الجهاز الهيكلي", "en": "The Skeletal System" },
+          "lessons": [
+            {
+              "id": "l1",
+              "title": { "ar": "العظام", "en": "Bones" },
+              "durationSec": 14,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "l2",
+              "title": { "ar": "المفاصل", "en": "Joints" },
+              "durationSec": 44,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": { "ar": "الجهاز العضلي", "en": "The Muscular System" },
+          "lessons": [
+            {
+              "id": "l3",
+              "title": { "ar": "أنواع العضلات", "en": "Types of Muscle" },
+              "durationSec": 215,
+              "video": "assets/videos/lesson3.mp4"
+            },
+            {
+              "id": "l4",
+              "title": { "ar": "انقباض العضلات", "en": "Muscle Contraction" },
+              "durationSec": 44,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "physiology-101",
+      "title": { "ar": "أساسيات علم وظائف الأعضاء", "en": "Physiology Essentials" },
+      "instructor": { "ar": "د. خالد", "en": "Dr. Khalid" },
+      "thumbnail": "assets/images/physiology.jpeg",
+      "sections": [
+        {
+          "id": "s1",
+          "title": { "ar": "الجهاز العصبي", "en": "The Nervous System" },
+          "lessons": [
+            {
+              "id": "l1",
+              "title": { "ar": "الخلايا العصبية", "en": "Neurons" },
+              "durationSec": 215,
+              "video": "assets/videos/lesson3.mp4"
+            },
+            {
+              "id": "l2",
+              "title": { "ar": "السيالات العصبية", "en": "Nerve Impulses" },
+              "durationSec": 14,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "l3",
+              "title": { "ar": "المشابك العصبية", "en": "Synapses" },
+              "durationSec": 44,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": { "ar": "الجهاز القلبي الوعائي", "en": "The Cardiovascular System" },
+          "lessons": [
+            {
+              "id": "l4",
+              "title": { "ar": "القلب", "en": "The Heart" },
+              "durationSec": 14,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "l5",
+              "title": { "ar": "الدورة الدموية", "en": "Blood Circulation" },
+              "durationSec": 215,
+              "video": "assets/videos/lesson3.mp4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

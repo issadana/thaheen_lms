@@ -1,0 +1,81 @@
+{
+  "courses": [
+    {
+      "id": "edge-missing-video",
+      "title": { "ar": "ملف فيديو مفقود", "en": "Missing video file" },
+      "instructor": { "ar": "حالة اختبار", "en": "Edge case" },
+      "thumbnail": "assets/images/organs.jpg",
+      "sections": [
+        {
+          "id": "s1",
+          "title": { "ar": "القسم الأول", "en": "Section one" },
+          "lessons": [
+            {
+              "id": "l1",
+              "title": { "ar": "درس بملف غير موجود", "en": "Lesson with a missing file" },
+              "durationSec": 60,
+              "video": "assets/videos/missing.mp4"
+            },
+            {
+              "id": "l2",
+              "title": { "ar": "درس سليم", "en": "Working lesson" },
+              "durationSec": 44,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge-corrupt-video",
+      "title": { "ar": "ملف فيديو تالف", "en": "Corrupt video file" },
+      "instructor": { "ar": "حالة اختبار", "en": "Edge case" },
+      "thumbnail": "assets/images/does_not_exist.png",
+      "sections": [
+        {
+          "id": "s1",
+          "title": { "ar": "القسم الأول", "en": "Section one" },
+          "lessons": [
+            {
+              "id": "l1",
+              "title": { "ar": "درس بملف تالف", "en": "Lesson with a corrupt file" },
+              "durationSec": 60,
+              "video": "assets/videos/corrupt.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge-empty-section",
+      "title": { "ar": "قسم بلا دروس", "en": "Section with no lessons" },
+      "instructor": { "ar": "حالة اختبار", "en": "Edge case" },
+      "thumbnail": "assets/images/physiology.jpeg",
+      "sections": [
+        {
+          "id": "s1",
+          "title": { "ar": "قسم فارغ", "en": "Empty section" },
+          "lessons": []
+        },
+        {
+          "id": "s2",
+          "title": { "ar": "قسم بدروس", "en": "Section with lessons" },
+          "lessons": [
+            {
+              "id": "l1",
+              "title": { "ar": "درس سليم", "en": "Working lesson" },
+              "durationSec": 215,
+              "video": "assets/videos/lesson3.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge-empty-course",
+      "title": { "ar": "مقرر بلا دروس", "en": "Course with no lessons" },
+      "instructor": { "ar": "حالة اختبار", "en": "Edge case" },
+      "sections": []
+    }
+  ]
+}
