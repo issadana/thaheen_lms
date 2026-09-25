@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/l10n/l10n.dart';
-import '../../../../core/orientation.dart';
+import '../../../../core/config/orientation.dart';
 import '../../../../core/localization/localized_text_x.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../../courses/domain/course.dart';

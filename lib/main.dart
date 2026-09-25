@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
-import 'core/orientation.dart';
+import 'core/config/orientation.dart';
 import 'features/courses/data/course_repository.dart';
 
 Future<void> main() async {
