@@ -14,12 +14,22 @@ final class CoursesLoading extends CoursesState {
 }
 
 final class CoursesLoaded extends CoursesState {
-  const CoursesLoaded(this.courses);
+  const CoursesLoaded(this.courses, {this.query = ''});
 
+  /// The whole catalog.
   final List<Course> courses;
 
+  /// What the student typed in the search box.
+  final String query;
+
+  bool get isSearching => query.trim().isNotEmpty;
+
+  /// The courses matching [query]; all of them when it's empty.
+  List<Course> get visibleCourses =>
+      courses.where((course) => course.matches(query)).toList();
+
   @override
-  List<Object?> get props => [courses];
+  List<Object?> get props => [courses, query];
 }
 
 /// The catalog could not be read. The technical details are logged; the UI

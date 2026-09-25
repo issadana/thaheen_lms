@@ -23,6 +23,14 @@ class CoursesCubit extends Cubit<CoursesState> {
     }
   }
 
+  /// Filters the list by title or instructor. Ignored until the catalog
+  /// has loaded.
+  void search(String query) {
+    if (state case final CoursesLoaded loaded) {
+      emit(CoursesLoaded(loaded.courses, query: query));
+    }
+  }
+
   Course? courseById(String courseId) => switch (state) {
         CoursesLoaded(:final courses) => courses.where((c) => c.id == courseId).firstOrNull,
         _ => null,

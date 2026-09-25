@@ -7,7 +7,6 @@ import '../../../../core/widgets/state_views.dart';
 import '../../../progress/domain/progress_rules.dart';
 import '../../../progress/presentation/cubit/progress_cubit.dart';
 import '../../../settings/presentation/widgets/settings_actions.dart';
-import '../../domain/course.dart';
 import '../cubit/courses_cubit.dart';
 import '../widgets/continue_watching_card.dart';
 import '../widgets/course_card.dart';
@@ -43,8 +42,8 @@ class CoursesScreen extends StatelessWidget {
             icon: Icons.menu_book_outlined,
             title: l10n.emptyCatalog,
           ),
-          CoursesLoaded(:final courses) => _CourseList(
-            courses: courses,
+          final CoursesLoaded loaded => _CourseList(
+            state: loaded,
             onOpenCourse: onOpenCourse,
             onOpenLesson: onOpenLesson,
           ),
@@ -56,12 +55,12 @@ class CoursesScreen extends StatelessWidget {
 
 class _CourseList extends StatefulWidget {
   const _CourseList({
-    required this.courses,
+    required this.state,
     required this.onOpenCourse,
     required this.onOpenLesson,
   });
 
-  final List<Course> courses;
+  final CoursesLoaded state;
   final void Function(String courseId) onOpenCourse;
   final void Function(String courseId, String lessonId) onOpenLesson;
 
@@ -70,8 +69,9 @@ class _CourseList extends StatefulWidget {
 }
 
 class _CourseListState extends State<_CourseList> {
-  final _search = TextEditingController();
-  String _query = '';
+  // Starts from the cubit's query, so the box and the list agree if this
+  // widget is ever rebuilt from scratch.
+  late final _search = TextEditingController(text: widget.state.query);
 
   @override
   void dispose() {
@@ -83,10 +83,11 @@ class _CourseListState extends State<_CourseList> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final progress = context.watch<ProgressCubit>().state.lessons;
-    final courses = widget.courses.where((c) => c.matches(_query)).toList();
-    final resume = _query.isEmpty
-        ? continueWatching(widget.courses, progress)
-        : null;
+    final state = widget.state;
+    final courses = state.visibleCourses;
+    final resume = state.isSearching
+        ? null
+        : continueWatching(state.courses, progress);
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
@@ -96,7 +97,7 @@ class _CourseListState extends State<_CourseList> {
         AppSearchField(
           controller: _search,
           hintText: l10n.searchHint,
-          onChanged: (value) => setState(() => _query = value),
+          onChanged: context.read<CoursesCubit>().search,
         ),
         const SizedBox(height: 16),
         if (resume != null) ...[
