@@ -39,7 +39,7 @@ flutter test
 - **Arabic-first RTL:** Arabic by default. Layout, paddings, arrows and the seek bar follow the reading direction. Times and speeds (`1.5x`, `03:14`) always read left to right.
 - **States:** loading, empty catalog, empty course, empty section, course or lesson not found, catalog error, and missing or corrupt video. Every error screen explains the problem and offers a retry where it makes sense.
 
-**Bonus:** Arabic/English switch, dark mode, course search, remembered playback speed, widget tests.
+**Bonus:** every bonus item. Arabic/English switch, dark mode, course search, per-lesson notes (in the player under "Next lesson", saved as you type), remembered playback speed, and widget tests.
 
 ## Architecture
 
@@ -50,13 +50,14 @@ lib/
   features/
     courses/       data (repository) · domain (Course/Section/Lesson) · presentation
     progress/      data (store) · domain (rules) · presentation (cubit)
+    notes/         data (store) · presentation (cubit, notes field)
     player/        presentation (cubit, screen, widgets)
     settings/      data (store) · presentation (cubit, app-bar actions)
 ```
 
 Each feature has three layers, and each layer only depends on the ones below it:
 
-- **data** reads assets and local storage and turns them into domain objects. Examples: `CourseRepository`, `ProgressStore`, `SettingsStore`.
+- **data** reads assets and local storage and turns them into domain objects. Examples: `CourseRepository`, `ProgressStore`, `NotesStore`, `SettingsStore`.
 - **domain** is plain Dart with no Flutter code. It holds the models and the rules. All the progress logic, such as the 90% rule, unlocking, progress %, the resume position and "Continue watching", is pure functions in `progress_rules.dart`. That's why it can be tested without widgets.
 - **presentation** holds the cubits, screens and widgets.
 
@@ -71,6 +72,7 @@ Some parts that aren't obvious from the code:
 
 - `CoursesCubit`: the catalog and the search query.
 - `ProgressCubit`: the single source of truth for progress. Every screen reads it and calculates statuses and percentages with the domain rules.
+- `NotesCubit`: the student's notes, one per lesson.
 - `SettingsCubit`: language, theme and playback speed.
 - `PlayerCubit`: one per open lesson. It owns the video controller, saves progress and handles the controls' visibility.
 
@@ -80,14 +82,14 @@ The only `setState` left is in the seek bar (`player_controls.dart`), for the th
 
 ### Local storage: SharedPreferences
 
-Progress is a small map of `courseId/lessonId → {position, duration, completed, updatedAt}`, saved as one versioned JSON value (`progress.v1`). SharedPreferences fits that well:
+Progress is a small map of `courseId/lessonId → {position, duration, completed, updatedAt}`, saved as one versioned JSON value (`progress.v1`). Notes are stored the same way (`notes.v1`: `courseId/lessonId → text`). SharedPreferences fits that well:
 
 - **The data is small and has no relations.** One lesson is only a few bytes, and the app has no queries or schema that would need a database.
 - **No code generation or native database setup.** Hive and Isar need adapters or schemas and code generation, and both have uncertain maintenance at the moment.
 - **Reads are synchronous once it's loaded.** Progress is available the moment the app starts, with no loading state.
-- **Corrupt data can't block the app.** If the stored JSON can't be read, the app logs it and starts with empty progress.
+- **Corrupt data can't block the app.** If the stored JSON can't be read, the app logs it and starts with empty progress or notes.
 
-With many courses, or features like notes and sync, I would switch to a real database (Drift/sqflite), because saving the whole map on every write would get expensive.
+With many courses, long notes or sync, I would switch to a real database (Drift/sqflite), because saving the whole map on every write would get expensive.
 
 **When progress is saved:** on pause, on seek, when the lesson reaches 90%, when the video ends, when the app goes to the background, when the player closes, and every 5 seconds while playing. So a crash or a killed app loses at most a few seconds.
 
@@ -100,10 +102,10 @@ With many courses, or features like notes and sync, I would switch to a real dat
 
 ## Tests
 
-49 tests.
+53 tests.
 
 - **`progress_rules_test.dart`:** the 90% completion rule (at 90%, just below 90%, unknown duration, completion stays after seeking back, out-of-range positions), the unlock rule (first lesson, across sections, progress from another course, unknown lesson), progress % (including an empty course), the course action button, the resume position and "Continue watching".
-- **Cubits and data:** `ProgressCubit`, `CoursesCubit` search, and `CourseRepository` parsing and validation (valid catalog, bundled catalog, malformed JSON, missing field, duplicate IDs, missing file).
+- **Cubits and data:** `ProgressCubit`, `NotesCubit` (notes survive a restart, are kept per course, are removed when cleared, and corrupt data starts fresh), `CoursesCubit` search, and `CourseRepository` parsing and validation (valid catalog, bundled catalog, malformed JSON, missing field, duplicate IDs, missing file).
 - **Widget tests (`app_test.dart`):** the main flows, including the corrupt-catalog error with retry and the empty catalog.
 
 ## Trade-offs and known issues
@@ -117,9 +119,10 @@ With many courses, or features like notes and sync, I would switch to a real dat
 
 ## What I'd do with more time
 
-- **Per-lesson notes** (the one bonus I skipped): a notes store keyed like progress, plus a notes panel under the player.
+- **Rotate to enter fullscreen:** go fullscreen when the phone is turned sideways in the player, without the screen flipping when the player opens. This needs orientation sensor events (e.g. `sensors_plus`) rather than unlocking landscape, which causes the flip.
 - Tests for `PlayerCubit` with a fake video controller (control hiding, completion badge, scrubbing), and golden tests for the RTL and LTR layouts.
-- A move to Drift/sqflite once the data grows, with a migration from `progress.v1`.
+- A move to Drift/sqflite once the data grows, with a migration from `progress.v1` and `notes.v1`.
+- Notes timestamped at a point in the video, so tapping one jumps back to that moment.
 - Accessibility: a screen-reader review, larger font sizes, and announcing when a lesson is completed.
 - Picture-in-picture and background audio.
 

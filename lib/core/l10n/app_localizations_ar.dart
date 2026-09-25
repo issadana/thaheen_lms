@@ -168,4 +168,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reset => 'إعادة الضبط';
+
+  @override
+  String get lessonNotesTitle => 'ملاحظاتي';
+
+  @override
+  String get lessonNotesHint => 'اكتب ملاحظاتك عن هذا الدرس…';
+
+  @override
+  String get lessonNotesSavedAutomatically => 'تُحفظ تلقائيًا';
 }

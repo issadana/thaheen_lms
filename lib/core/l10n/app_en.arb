@@ -45,5 +45,8 @@
   "resetProgress": "Reset progress",
   "resetProgressConfirm": "This will erase your progress in every lesson. Continue?",
   "cancel": "Cancel",
-  "reset": "Reset"
+  "reset": "Reset",
+  "lessonNotesTitle": "My notes",
+  "lessonNotesHint": "Write your notes for this lesson…",
+  "lessonNotesSavedAutomatically": "Saved automatically"
 }

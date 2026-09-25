@@ -167,4 +167,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reset => 'Reset';
+
+  @override
+  String get lessonNotesTitle => 'My notes';
+
+  @override
+  String get lessonNotesHint => 'Write your notes for this lesson…';
+
+  @override
+  String get lessonNotesSavedAutomatically => 'Saved automatically';
 }

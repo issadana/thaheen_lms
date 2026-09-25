@@ -7,6 +7,8 @@ import 'core/router/routes_manager.dart';
 import 'core/theme/app_theme.dart';
 import 'features/courses/data/course_repository.dart';
 import 'features/courses/presentation/cubit/courses_cubit.dart';
+import 'features/notes/data/notes_store.dart';
+import 'features/notes/presentation/cubit/notes_cubit.dart';
 import 'features/progress/data/progress_store.dart';
 import 'features/progress/presentation/cubit/progress_cubit.dart';
 import 'features/settings/data/settings_store.dart';
@@ -41,6 +43,7 @@ class _ThaheenAppState extends State<ThaheenApp> {
       providers: [
         BlocProvider(create: (_) => SettingsCubit(SettingsStore(widget.prefs))),
         BlocProvider(create: (_) => ProgressCubit(ProgressStore(widget.prefs))),
+        BlocProvider(create: (_) => NotesCubit(NotesStore(widget.prefs))),
         BlocProvider(
           create: (_) => CoursesCubit(widget.courseRepository)..load(),
         ),

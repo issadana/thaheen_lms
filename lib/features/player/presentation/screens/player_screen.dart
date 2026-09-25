@@ -11,6 +11,7 @@ import '../../../../core/widgets/state_views.dart';
 import '../../../courses/domain/course.dart';
 import '../../../courses/domain/lesson.dart';
 import '../../../courses/presentation/widgets/catalog_gate.dart';
+import '../../../notes/presentation/widgets/lesson_notes.dart';
 import '../../../progress/domain/progress_rules.dart';
 import '../../../progress/presentation/locked_lesson_message.dart';
 import '../../../progress/presentation/cubit/progress_cubit.dart';
@@ -214,6 +215,11 @@ class _PlayerViewState extends State<_PlayerView> {
                   lesson: widget.lesson,
                   onOpenLesson: (lessonId) =>
                       widget.onOpenLesson(widget.course.id, lessonId),
+                ),
+                const SizedBox(height: 24),
+                LessonNotes(
+                  courseId: widget.course.id,
+                  lessonId: widget.lesson.id,
                 ),
               ],
             ),

@@ -83,5 +83,8 @@
   "resetProgress": "إعادة ضبط التقدم",
   "resetProgressConfirm": "سيتم حذف تقدمك في جميع الدروس. هل تريد المتابعة؟",
   "cancel": "إلغاء",
-  "reset": "إعادة الضبط"
+  "reset": "إعادة الضبط",
+  "lessonNotesTitle": "ملاحظاتي",
+  "lessonNotesHint": "اكتب ملاحظاتك عن هذا الدرس…",
+  "lessonNotesSavedAutomatically": "تُحفظ تلقائيًا"
 }

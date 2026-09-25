@@ -373,6 +373,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إعادة الضبط'**
   String get reset;
+
+  /// No description provided for @lessonNotesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظاتي'**
+  String get lessonNotesTitle;
+
+  /// No description provided for @lessonNotesHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتب ملاحظاتك عن هذا الدرس…'**
+  String get lessonNotesHint;
+
+  /// No description provided for @lessonNotesSavedAutomatically.
+  ///
+  /// In ar, this message translates to:
+  /// **'تُحفظ تلقائيًا'**
+  String get lessonNotesSavedAutomatically;
 }
 
 class _AppLocalizationsDelegate
