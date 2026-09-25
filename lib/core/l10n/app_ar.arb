@@ -1,0 +1,87 @@
+{
+  "@@locale": "ar",
+  "appTitle": "ذهين",
+  "coursesTitle": "دوراتي",
+  "searchHint": "ابحث عن دورة أو محاضر",
+  "clearSearch": "مسح البحث",
+  "noSearchResults": "لا توجد دورات تطابق بحثك",
+  "continueWatching": "تابع المشاهدة",
+  "lessonCount": "{count, plural, =0{لا توجد دروس} =1{درس واحد} =2{درسان} few{{count} دروس} many{{count} درسًا} other{{count} درس}}",
+  "@lessonCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "percentComplete": "مكتمل {percent}٪",
+  "@percentComplete": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "completedOfTotal": "أكملت {done} من {total}",
+  "@completedOfTotal": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "statusNotStarted": "لم يبدأ",
+  "statusInProgress": "قيد المشاهدة",
+  "statusCompleted": "مكتمل",
+  "statusLocked": "مقفل",
+  "lockedLessonMessage": "هذا الدرس مقفل. أكمل الدرس السابق أولاً لفتحه",
+  "lockedLessonTitle": "هذا الدرس غير متاح بعد",
+  "lockedLessonFinishFirst": "أكمل درس «{lesson}» أولاً لفتح هذا الدرس",
+  "@lockedLessonFinishFirst": {
+    "placeholders": {
+      "lesson": {
+        "type": "String"
+      }
+    }
+  },
+  "emptyCatalog": "لا توجد دورات متاحة حاليًا",
+  "emptyCourse": "لا يحتوي هذا المقرر على دروس بعد",
+  "emptySection": "لا توجد دروس في هذا القسم بعد",
+  "catalogErrorTitle": "تعذّر تحميل الدورات",
+  "catalogErrorMessage": "حدث خطأ أثناء قراءة بيانات الدورات. حاول مرة أخرى.",
+  "courseNotFound": "لم يتم العثور على هذا المقرر",
+  "lessonNotFound": "لم يتم العثور على هذا الدرس",
+  "retry": "إعادة المحاولة",
+  "goBack": "رجوع",
+  "videoErrorTitle": "تعذّر تشغيل هذا الفيديو",
+  "videoErrorMessage": "قد يكون ملف الفيديو مفقودًا أو تالفًا.",
+  "play": "تشغيل",
+  "pause": "إيقاف مؤقت",
+  "playbackSpeed": "سرعة التشغيل",
+  "enterFullscreen": "ملء الشاشة",
+  "exitFullscreen": "الخروج من ملء الشاشة",
+  "nextLesson": "الدرس التالي",
+  "nextLessonLockedHint": "شاهد ٩٠٪ من هذا الدرس لفتح الدرس التالي",
+  "startCourse": "ابدأ الدورة",
+  "continueLesson": "تابع: {lesson}",
+  "@continueLesson": {
+    "placeholders": {
+      "lesson": {
+        "type": "String"
+      }
+    }
+  },
+  "watchAgain": "شاهد الدورة من جديد",
+  "lessonCompleted": "أحسنت! اكتمل هذا الدرس",
+  "courseCompleted": "أحسنت! أكملت جميع دروس هذا المقرر 🎉",
+  "switchLanguage": "English",
+  "toggleTheme": "تبديل المظهر",
+  "moreOptions": "خيارات إضافية",
+  "resetProgress": "إعادة ضبط التقدم",
+  "resetProgressConfirm": "سيتم حذف تقدمك في جميع الدروس. هل تريد المتابعة؟",
+  "cancel": "إلغاء",
+  "reset": "إعادة الضبط"
+}
