@@ -102,11 +102,14 @@ With many courses, long notes or sync, I would switch to a real database (Drift/
 
 ## Tests
 
-53 tests.
+12 tests, focused on what the task asks for. The progress rules are pure functions, so they're tested without any widgets.
 
-- **`progress_rules_test.dart`:** the 90% completion rule (at 90%, just below 90%, unknown duration, completion stays after seeking back, out-of-range positions), the unlock rule (first lesson, across sections, progress from another course, unknown lesson), progress % (including an empty course), the course action button, the resume position and "Continue watching".
-- **Cubits and data:** `ProgressCubit`, `NotesCubit` (notes survive a restart, are kept per course, are removed when cleared, and corrupt data starts fresh), `CoursesCubit` search, and `CourseRepository` parsing and validation (valid catalog, bundled catalog, malformed JSON, missing field, duplicate IDs, missing file).
-- **Widget tests (`app_test.dart`):** the main flows, including the corrupt-catalog error with retry and the empty catalog.
+- **`progress_rules_test.dart`** (the required unit tests):
+  - **90% completion rule:** reached at exactly 90%, not just below it, and completion stays after seeking back.
+  - **Unlock rule:** the first lesson is open, a lesson stays locked until the previous one is completed, and the rule continues across sections.
+  - **Progress %:** 0 with no progress, only completed lessons count, and a course with no lessons gives 0 (no division by zero).
+- **`progress_cubit_test.dart`:** progress survives an app restart.
+- **`app_test.dart`** (widget tests): the app starts in Arabic with an RTL layout, and tapping a locked lesson shows the friendly message.
 
 ## Trade-offs and known issues
 
@@ -115,17 +118,15 @@ With many courses, long notes or sync, I would switch to a real database (Drift/
 - **Durations.** The `durationSec` in the catalog is only used for display. Completion and resume use the real duration reported by the player.
 - **Progress depends on IDs.** Progress is stored by course and lesson ID, so renaming an ID in the catalog would lose the progress stored under the old ID.
 - **No `PlayerCubit` tests.** Testing it would need a fake video controller. The rules it relies on are covered by the domain tests.
-- <!-- TODO: add anything you noticed on a real device, e.g. "Tested on: Pixel 7 (Android 15), iPhone 13 (iOS 18)". -->
 
 ## What I'd do with more time
 
 - **Rotate to enter fullscreen:** go fullscreen when the phone is turned sideways in the player, without the screen flipping when the player opens. This needs orientation sensor events (e.g. `sensors_plus`) rather than unlocking landscape, which causes the flip.
-- Tests for `PlayerCubit` with a fake video controller (control hiding, completion badge, scrubbing), and golden tests for the RTL and LTR layouts.
+- More tests: `PlayerCubit` with a fake video controller (control hiding, completion badge, scrubbing), catalog validation, notes, and golden tests for the RTL and LTR layouts.
 - A move to Drift/sqflite once the data grows, with a migration from `progress.v1` and `notes.v1`.
 - Notes timestamped at a point in the video, so tapping one jumps back to that moment.
-- Accessibility: a screen-reader review, larger font sizes, and announcing when a lesson is completed.
-- Picture-in-picture and background audio.
+- Picture-in-picture.
 
 ## Time spent
 
-<!-- TODO: fill in, e.g. "About 6 hours: 1 h data and domain, 2.5 h player, 1.5 h UI/RTL, 1 h tests and README." -->
+Around 5 hours.
