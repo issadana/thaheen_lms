@@ -10,15 +10,15 @@ class StatePage extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(appBar: AppBar(), body: child);
+  Widget build(BuildContext context) => Scaffold(appBar: AppBar(), body: child);
 }
 
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 
   @override
-  Widget build(BuildContext context) => const Center(child: CircularProgressIndicator());
+  Widget build(BuildContext context) =>
+      const Center(child: CircularProgressIndicator());
 }
 
 /// A centred icon, title, optional message and optional action.
@@ -48,7 +48,11 @@ class MessageView extends StatelessWidget {
           children: [
             Icon(icon, size: 56, color: theme.colorScheme.outline),
             const SizedBox(height: 16),
-            Text(title, style: theme.textTheme.titleMedium, textAlign: TextAlign.center),
+            Text(
+              title,
+              style: theme.textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
             if (message != null) ...[
               const SizedBox(height: 8),
               Text(
@@ -68,7 +72,12 @@ class MessageView extends StatelessWidget {
 }
 
 class ErrorView extends StatelessWidget {
-  const ErrorView({super.key, required this.title, this.message, required this.onRetry});
+  const ErrorView({
+    super.key,
+    required this.title,
+    this.message,
+    required this.onRetry,
+  });
 
   final String title;
   final String? message;
@@ -76,13 +85,13 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MessageView(
-        icon: Icons.error_outline,
-        title: title,
-        message: message,
-        action: FilledButton.icon(
-          onPressed: onRetry,
-          icon: const Icon(Icons.refresh),
-          label: Text(context.l10n.retry),
-        ),
-      );
+    icon: Icons.error_outline,
+    title: title,
+    message: message,
+    action: FilledButton.icon(
+      onPressed: onRetry,
+      icon: const Icon(Icons.refresh),
+      label: Text(context.l10n.retry),
+    ),
+  );
 }

@@ -8,7 +8,11 @@ import '../../../progress/domain/progress_rules.dart';
 import 'course_thumbnail.dart';
 
 class ContinueWatchingCard extends StatelessWidget {
-  const ContinueWatchingCard({super.key, required this.item, required this.onTap});
+  const ContinueWatchingCard({
+    super.key,
+    required this.item,
+    required this.onTap,
+  });
 
   final ContinueWatching item;
   final VoidCallback onTap;
@@ -30,7 +34,9 @@ class ContinueWatchingCard extends StatelessWidget {
             children: [
               Text(
                 context.l10n.continueWatching,
-                style: theme.textTheme.labelLarge?.copyWith(color: colors.onPrimaryContainer),
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: colors.onPrimaryContainer,
+                ),
               ),
               const SizedBox(height: 12),
               Row(
@@ -52,7 +58,9 @@ class ContinueWatchingCard extends StatelessWidget {
                         ),
                         Text(
                           item.course.title.of(context),
-                          style: theme.textTheme.bodySmall?.copyWith(color: colors.onPrimaryContainer),
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colors.onPrimaryContainer,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -67,14 +75,18 @@ class ContinueWatchingCard extends StatelessWidget {
               AnimatedProgressBar(
                 value: progress.watchedFraction,
                 minHeight: 4,
-                backgroundColor: colors.onPrimaryContainer.withValues(alpha: 0.15),
+                backgroundColor: colors.onPrimaryContainer.withValues(
+                  alpha: 0.15,
+                ),
               ),
               const SizedBox(height: 4),
               // Times are always shown left-to-right, like any clock.
               Text(
                 '${formatDuration(progress.position)} / ${formatDuration(progress.duration)}',
                 textDirection: TextDirection.ltr,
-                style: theme.textTheme.bodySmall?.copyWith(color: colors.onPrimaryContainer),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colors.onPrimaryContainer,
+                ),
               ),
             ],
           ),

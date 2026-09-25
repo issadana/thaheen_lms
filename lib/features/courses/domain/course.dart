@@ -35,9 +35,11 @@ class Course extends Equatable {
   final String id;
   final LocalizedText title;
   final LocalizedText instructor;
+
   /// Asset path of the thumbnail image. Optional.
   final String? thumbnail;
   final List<Section> sections;
+
   /// All lessons in watching order (section by section).
   List<Lesson> get lessons => [
     for (final section in sections) ...section.lessons,
@@ -60,15 +62,26 @@ class Course extends Equatable {
     return null;
   }
 
-  /// Case-insensitive search across the title and instructor in every language.
+  /// Case-insensitive search across the title and instructor in every
+  /// language. Arabic spelling variants match each other (see [_normalize]).
   bool matches(String query) {
-    final q = query.trim().toLowerCase();
+    final q = _normalize(query.trim());
     if (q.isEmpty) return true;
     return [
       ...title.values.values,
       ...instructor.values.values,
-    ].any((text) => text.toLowerCase().contains(q));
+    ].any((text) => _normalize(text).contains(q));
   }
+
+  /// Folds the differences students don't type consistently: diacritics and
+  /// tatweel are dropped, hamza forms of alef become ا, ى becomes ي and
+  /// ة becomes ه. So "اساسيات" finds "أساسيات".
+  static String _normalize(String text) => text
+      .toLowerCase()
+      .replaceAll(RegExp('[\u064B-\u0652\u0640]'), '')
+      .replaceAll(RegExp('[أإآ]'), 'ا')
+      .replaceAll('ى', 'ي')
+      .replaceAll('ة', 'ه');
 
   @override
   List<Object?> get props => [id, title, instructor, thumbnail, sections];

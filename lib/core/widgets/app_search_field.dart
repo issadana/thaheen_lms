@@ -27,7 +27,7 @@ class AppSearchField extends StatelessWidget {
       builder: (context, _) => TextField(
         controller: controller,
         onChanged: onChanged,
-        // Tapping anywhere outside the field closes the keyboard. 
+        // Tapping anywhere outside the field closes the keyboard.
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(

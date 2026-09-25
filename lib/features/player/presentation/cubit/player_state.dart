@@ -23,11 +23,14 @@ class PlayerState extends Equatable {
   final bool isBuffering;
   final double speed;
   final bool isFullscreen;
+
   /// True while the student drags the seek bar.
   final bool isScrubbing;
+
   /// Whether the fullscreen controls are showing. They fade out a few
   /// seconds into playback and come back on a tap or when paused.
   final bool controlsVisible;
+
   /// True for a moment after the lesson becomes completed, while the
   /// "Lesson completed" badge shows over the video.
   final bool showCompletion;

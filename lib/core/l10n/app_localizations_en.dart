@@ -98,9 +98,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retry => 'Try again';
 
   @override
-  String get goBack => 'Go back';
-
-  @override
   String get videoErrorTitle => 'This video can\'t be played';
 
   @override
@@ -137,7 +134,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get watchAgain => 'Watch again';
+  String get watchAgain => 'Watch the course again';
 
   @override
   String get lessonCompleted => 'Well done! Lesson completed';

@@ -24,7 +24,9 @@ class ProgressStore {
       final decoded = jsonDecode(raw) as Map<String, dynamic>;
       return {
         for (final entry in decoded.entries)
-          entry.key: LessonProgress.fromJson(entry.value as Map<String, dynamic>),
+          entry.key: LessonProgress.fromJson(
+            entry.value as Map<String, dynamic>,
+          ),
       };
     } catch (error) {
       // Corrupt saved data should not stop the app from starting.
@@ -35,9 +37,11 @@ class ProgressStore {
   }
 
   Future<void> save(ProgressMap progress) => _prefs.setString(
-        storageKey,
-        jsonEncode({for (final entry in progress.entries) entry.key: entry.value.toJson()}),
-      );
+    storageKey,
+    jsonEncode({
+      for (final entry in progress.entries) entry.key: entry.value.toJson(),
+    }),
+  );
 
   Future<void> clear() => _prefs.remove(storageKey);
 }

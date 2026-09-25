@@ -15,7 +15,11 @@ class Lesson extends Equatable {
     final id = readId(json, 'lesson');
     final where = 'lesson "$id"';
     final durationSec = readField<num>(json, 'durationSec', where);
-    if (durationSec < 0) throw FormatException('$where: "durationSec" is negative');
+    if (!durationSec.isFinite || durationSec < 0) {
+      throw FormatException(
+        '$where: "durationSec" must be a non-negative number',
+      );
+    }
     return Lesson(
       id: id,
       title: LocalizedText.fromJson(json['title']),

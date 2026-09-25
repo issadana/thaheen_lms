@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// No description provided for @emptyCourse.
   ///
   /// In ar, this message translates to:
-  /// **'لا يحتوي هذا المقرر على دروس بعد'**
+  /// **'لا تحتوي هذه الدورة على دروس بعد'**
   String get emptyCourse;
 
   /// No description provided for @emptySection.
@@ -227,7 +227,7 @@ abstract class AppLocalizations {
   /// No description provided for @courseNotFound.
   ///
   /// In ar, this message translates to:
-  /// **'لم يتم العثور على هذا المقرر'**
+  /// **'لم يتم العثور على هذه الدورة'**
   String get courseNotFound;
 
   /// No description provided for @lessonNotFound.
@@ -241,12 +241,6 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إعادة المحاولة'**
   String get retry;
-
-  /// No description provided for @goBack.
-  ///
-  /// In ar, this message translates to:
-  /// **'رجوع'**
-  String get goBack;
 
   /// No description provided for @videoErrorTitle.
   ///
@@ -299,7 +293,7 @@ abstract class AppLocalizations {
   /// No description provided for @nextLessonLockedHint.
   ///
   /// In ar, this message translates to:
-  /// **'شاهد ٩٠٪ من هذا الدرس لفتح الدرس التالي'**
+  /// **'شاهد 90٪ من هذا الدرس لفتح الدرس التالي'**
   String get nextLessonLockedHint;
 
   /// No description provided for @startCourse.
@@ -329,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @courseCompleted.
   ///
   /// In ar, this message translates to:
-  /// **'أحسنت! أكملت جميع دروس هذا المقرر 🎉'**
+  /// **'أحسنت! أكملت جميع دروس هذه الدورة 🎉'**
   String get courseCompleted;
 
   /// No description provided for @switchLanguage.

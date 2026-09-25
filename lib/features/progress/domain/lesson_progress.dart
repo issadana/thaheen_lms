@@ -15,20 +15,24 @@ class LessonProgress extends Equatable {
   });
 
   factory LessonProgress.fromJson(Map<String, dynamic> json) => LessonProgress(
-        position: Duration(milliseconds: json['positionMs'] as int),
-        duration: Duration(milliseconds: json['durationMs'] as int),
-        completed: json['completed'] as bool,
-        updatedAt: DateTime.parse(json['updatedAt'] as String),
-      );
+    position: Duration(milliseconds: json['positionMs'] as int),
+    duration: Duration(milliseconds: json['durationMs'] as int),
+    completed: json['completed'] as bool,
+    updatedAt: DateTime.parse(json['updatedAt'] as String),
+  );
 
   /// Last watched position.
   final Duration position;
+
   /// Real video duration, as reported by the player.
   final Duration duration;
+
   /// Sticky: once a lesson is completed it stays completed.
   final bool completed;
+
   /// When this lesson was last watched. Used for "Continue watching".
   final DateTime updatedAt;
+
   /// How far through the video the saved position is, from 0 to 1.
   double get watchedFraction {
     if (duration <= Duration.zero) return 0;
@@ -36,11 +40,11 @@ class LessonProgress extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'positionMs': position.inMilliseconds,
-        'durationMs': duration.inMilliseconds,
-        'completed': completed,
-        'updatedAt': updatedAt.toIso8601String(),
-      };
+    'positionMs': position.inMilliseconds,
+    'durationMs': duration.inMilliseconds,
+    'completed': completed,
+    'updatedAt': updatedAt.toIso8601String(),
+  };
 
   @override
   List<Object?> get props => [position, duration, completed, updatedAt];

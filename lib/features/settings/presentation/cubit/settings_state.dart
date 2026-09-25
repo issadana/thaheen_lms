@@ -10,6 +10,7 @@ class SettingsState extends Equatable {
 
   final String languageCode;
   final ThemeMode themeMode;
+
   /// The last speed the student picked, reused for the next lesson.
   final double playbackSpeed;
 

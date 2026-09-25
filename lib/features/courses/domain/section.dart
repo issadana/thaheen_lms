@@ -13,7 +13,8 @@ class Section extends Equatable {
       id: id,
       title: LocalizedText.fromJson(json['title']),
       lessons: [
-        for (final lesson in readObjectList(json, 'lessons', 'section "$id"')) Lesson.fromJson(lesson),
+        for (final lesson in readObjectList(json, 'lessons', 'section "$id"'))
+          Lesson.fromJson(lesson),
       ],
     );
   }

@@ -7,7 +7,11 @@ import '../domain/lesson_progress.dart';
 import '../domain/progress_rules.dart';
 
 /// Explains why a lesson is locked by naming the lesson to finish first.
-String lockedLessonMessage(BuildContext context, Course course, ProgressMap progress) {
+String lockedLessonMessage(
+  BuildContext context,
+  Course course,
+  ProgressMap progress,
+) {
   final l10n = context.l10n;
   final lesson = firstUnfinishedLesson(course, progress);
   return lesson == null

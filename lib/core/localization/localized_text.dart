@@ -13,10 +13,14 @@ class LocalizedText extends Equatable {
     if (json is String && json.trim().isNotEmpty) {
       return LocalizedText.single(json);
     }
-    if (json is Map && json.isNotEmpty && json.values.every((v) => v is String)) {
+    if (json is Map &&
+        json.isNotEmpty &&
+        json.values.every((v) => v is String && v.trim().isNotEmpty)) {
       return LocalizedText(Map<String, String>.from(json));
     }
-    throw const FormatException('expected a non-empty string or a {"ar": ..., "en": ...} object');
+    throw const FormatException(
+      'expected a non-empty string or a {"ar": ..., "en": ...} object of non-empty strings',
+    );
   }
 
   static const fallbackLanguage = 'ar';

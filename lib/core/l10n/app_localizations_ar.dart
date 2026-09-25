@@ -79,7 +79,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emptyCatalog => 'لا توجد دورات متاحة حاليًا';
 
   @override
-  String get emptyCourse => 'لا يحتوي هذا المقرر على دروس بعد';
+  String get emptyCourse => 'لا تحتوي هذه الدورة على دروس بعد';
 
   @override
   String get emptySection => 'لا توجد دروس في هذا القسم بعد';
@@ -92,16 +92,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'حدث خطأ أثناء قراءة بيانات الدورات. حاول مرة أخرى.';
 
   @override
-  String get courseNotFound => 'لم يتم العثور على هذا المقرر';
+  String get courseNotFound => 'لم يتم العثور على هذه الدورة';
 
   @override
   String get lessonNotFound => 'لم يتم العثور على هذا الدرس';
 
   @override
   String get retry => 'إعادة المحاولة';
-
-  @override
-  String get goBack => 'رجوع';
 
   @override
   String get videoErrorTitle => 'تعذّر تشغيل هذا الفيديو';
@@ -128,7 +125,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nextLesson => 'الدرس التالي';
 
   @override
-  String get nextLessonLockedHint => 'شاهد ٩٠٪ من هذا الدرس لفتح الدرس التالي';
+  String get nextLessonLockedHint => 'شاهد 90٪ من هذا الدرس لفتح الدرس التالي';
 
   @override
   String get startCourse => 'ابدأ الدورة';
@@ -145,7 +142,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lessonCompleted => 'أحسنت! اكتمل هذا الدرس';
 
   @override
-  String get courseCompleted => 'أحسنت! أكملت جميع دروس هذا المقرر 🎉';
+  String get courseCompleted => 'أحسنت! أكملت جميع دروس هذه الدورة 🎉';
 
   @override
   String get switchLanguage => 'English';

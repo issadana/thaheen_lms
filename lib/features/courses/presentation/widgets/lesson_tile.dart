@@ -47,7 +47,10 @@ class LessonTile extends StatelessWidget {
         children: [
           Icon(Icons.schedule, size: 14, color: colors.onSurfaceVariant),
           const SizedBox(width: 4),
-          Text(formatDuration(lesson.duration), textDirection: TextDirection.ltr),
+          Text(
+            formatDuration(lesson.duration),
+            textDirection: TextDirection.ltr,
+          ),
           const Text('  •  '),
           Flexible(child: Text(statusLabel)),
         ],
@@ -57,7 +60,11 @@ class LessonTile extends StatelessWidget {
 }
 
 class _StatusIcon extends StatelessWidget {
-  const _StatusIcon({required this.status, required this.locked, required this.progress});
+  const _StatusIcon({
+    required this.status,
+    required this.locked,
+    required this.progress,
+  });
 
   final LessonStatus status;
   final bool locked;
@@ -86,24 +93,34 @@ class _StatusIcon extends StatelessWidget {
 
   Widget _icon(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    if (locked) return Icon(Icons.lock_outline, color: colors.outline, size: 28);
+    if (locked) {
+      return Icon(Icons.lock_outline, color: colors.outline, size: 28);
+    }
     return switch (status) {
-      LessonStatus.completed => Icon(Icons.check_circle, color: colors.primary, size: 28),
-      LessonStatus.notStarted => Icon(Icons.play_circle_outline, color: colors.primary, size: 28),
+      LessonStatus.completed => Icon(
+        Icons.check_circle,
+        color: colors.primary,
+        size: 28,
+      ),
+      LessonStatus.notStarted => Icon(
+        Icons.play_circle_outline,
+        color: colors.primary,
+        size: 28,
+      ),
       LessonStatus.inProgress => SizedBox.square(
-          dimension: 28,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircularProgressIndicator(
-                value: progress?.watchedFraction ?? 0,
-                strokeWidth: 3,
-                backgroundColor: colors.surfaceContainerHighest,
-              ),
-              Icon(Icons.play_arrow, size: 16, color: colors.primary),
-            ],
-          ),
+        dimension: 28,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            CircularProgressIndicator(
+              value: progress?.watchedFraction ?? 0,
+              strokeWidth: 3,
+              backgroundColor: colors.surfaceContainerHighest,
+            ),
+            Icon(Icons.play_arrow, size: 16, color: colors.primary),
+          ],
         ),
+      ),
     };
   }
 }

@@ -36,8 +36,10 @@ class PlayerCubit extends Cubit<PlayerState> {
   /// While playing, the position is saved at least this often, so a crash
   /// or a killed app loses at most a few seconds.
   static const saveInterval = Duration(seconds: 5);
+
   /// How long the fullscreen controls stay up once playback is running.
   static const hideControlsDelay = Duration(seconds: 3);
+
   /// How long the "Lesson completed" badge stays over the video.
   static const completionBadgeDuration = Duration(milliseconds: 2200);
 
@@ -132,9 +134,13 @@ class PlayerCubit extends Cubit<PlayerState> {
 
   /// Saves the current position. Also called when the app goes to the
   /// background and when the screen closes.
+  ///
+  /// Skipped while scrubbing: the controller then sits on a preview frame,
+  /// and saving it could complete the lesson without it being watched.
   Future<void> saveProgress() async {
     final controller = _controller;
     if (controller == null || !controller.value.isInitialized) return;
+    if (state.isScrubbing) return;
     _sinceLastSave
       ..reset()
       ..start();

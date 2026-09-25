@@ -32,7 +32,8 @@ class CoursesCubit extends Cubit<CoursesState> {
   }
 
   Course? courseById(String courseId) => switch (state) {
-        CoursesLoaded(:final courses) => courses.where((c) => c.id == courseId).firstOrNull,
-        _ => null,
-      };
+    CoursesLoaded(:final courses) =>
+      courses.where((c) => c.id == courseId).firstOrNull,
+    _ => null,
+  };
 }

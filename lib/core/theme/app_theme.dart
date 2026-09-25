@@ -11,7 +11,10 @@ abstract final class AppTheme {
   static final ThemeData dark = _build(Brightness.dark);
 
   static ThemeData _build(Brightness brightness) {
-    final colors = ColorScheme.fromSeed(seedColor: _seed, brightness: brightness);
+    final colors = ColorScheme.fromSeed(
+      seedColor: _seed,
+      brightness: brightness,
+    );
     return ThemeData(
       colorScheme: colors,
       fontFamily: _fontFamily,
@@ -29,7 +32,9 @@ abstract final class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: EdgeInsets.zero,
       ),
-      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+      snackBarTheme: const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: colors.surfaceContainerHighest,
